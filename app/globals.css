@@ -13,6 +13,11 @@
   margin: 0;
 }
 
+.title a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* ナビを右側に表示 */
 .nav ul {
   display: flex;
@@ -27,6 +32,27 @@
   color: black;
 }
 
-.nav a:hover {
-  text-decoration: underline;
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  width: 420px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.cardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cardList li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
 }

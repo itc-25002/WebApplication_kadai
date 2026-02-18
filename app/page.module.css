@@ -30,3 +30,57 @@
 .nav a:hover {
   text-decoration: underline;
 }
+
+.topCards {
+  display: flex;
+  gap: 40px;
+}
+
+.cardBox {
+  width: 420px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.cardBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.company {
+  font-weight: bold;
+}
+
+.tag {
+  color: gray;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* タグごとの色 */
+.インフラ {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.システム開発 {
+  background: #ffeeba;
+  color: #856404;
+}
+
+.システム運用 {
+  background: #f8d7da;
+  color: #721c24;
+}

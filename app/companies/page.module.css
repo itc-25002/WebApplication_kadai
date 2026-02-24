@@ -1,0 +1,91 @@
+.companyCard {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.companyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags {
+  margin-top: 8px;
+}
+
+.tag {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.85rem;
+}
+
+.pageWrapper {
+  padding: 60px 80px;
+  background: #f7f8fa;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.companyName {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.tagList {
+  margin-bottom: 16px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  margin-right: 8px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+}
+
+.linkButton {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-right: 10px;
+  background: #111;
+  color: white;
+  text-decoration: none;
+}
+
+.secondary {
+  background: #e5e7eb;
+  color: #111;
+}

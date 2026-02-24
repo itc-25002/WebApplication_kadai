@@ -1,0 +1,29 @@
+.container {
+  padding: 60px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count {
+  color: #888;
+  font-size: 14px;
+}
+
+.grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.empty {
+  margin-top: 40px;
+  text-align: center;
+  color: #999;
+}

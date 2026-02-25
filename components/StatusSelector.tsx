@@ -69,10 +69,9 @@ export default function StatusSelector({ companyId }: { companyId: string }) {
         <option
           key={opt}
           value={opt}
-          /* 全ての選択肢を選べるように、何も制限をかけない */
           style={{
             backgroundColor: "#fff",
-            color: "#333", // リスト内の文字は常に濃い色にして読みやすくする
+            color: "#333", 
             fontSize: "14px",
           }}
         >

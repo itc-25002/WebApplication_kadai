@@ -72,6 +72,7 @@
   font-weight: 500;
   color: white;
   text-decoration: none;
+  
 }
 
 .linkButton {
@@ -88,4 +89,45 @@
 .secondary {
   background: #e5e7eb;
   color: #111;
+}
+
+/* 絞り込み情報エリア全体のデザイン */
+.filterInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 32px; 
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* 「絞り込み中：」のラベル部分 */
+.filterInfo strong {
+  color: #111;
+  background: #f3f4f6;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* 「すべて表示」ボタンのデザイン */
+.clearButton {
+  display: inline-block;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.clearButton:hover {
+  background-color: #2563eb;
+  color: white;
 }

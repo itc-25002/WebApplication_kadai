@@ -11,7 +11,6 @@ export default function BookmarksPage() {
   const [favoriteCompanies, setFavoriteCompanies] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // お気に入りデータを読み込む関数を useCallback で定義（再利用しやすくするため）
   const loadFavorites = useCallback(async () => {
     try {
       const favoriteIds = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -133,7 +132,6 @@ export default function BookmarksPage() {
                   {company.name}
                 </h2>
 
-                {/* 修正ポイント: StarButton を使い、onToggle で再読み込みを実行 */}
                 <StarButton companyId={company.id} onToggle={loadFavorites} />
               </div>
 
@@ -160,17 +158,6 @@ export default function BookmarksPage() {
                   </span>
                 ))}
               </div>
-
-              {/* <p
-                style={{
-                  color: "#555",
-                  lineHeight: "1.6",
-                  marginBottom: "25px",
-                }}
-              >
-                {company.description ||
-                  "ここに企業の特徴や、自分が注目したポイントなどを表示できます。"}
-              </p> */}
 
               <div style={{ display: "flex", gap: "15px" }}>
                 <a

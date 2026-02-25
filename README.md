@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+就活状況管理アプリ（WebApplication_kadai）
+就職活動における企業情報の一覧表示、お気に入り登録、および選考ステータスの管理を行うWebアプリケーションです。
+散らばりがちな企業情報を一元管理し、現在の選考フェーズを可視化することを目的としています。
 
-## Getting Started
+🌐 デプロイURL
+https://web-application-kadai-wheat.vercel.app
 
-First, run the development server:
+✨ 機能の説明
+企業一覧表示: microCMSから取得した最新の企業情報をカード形式で一覧表示します。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+お気に入り機能: 気になる企業を「お気に入り」として保存し、後から素早く確認できます。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+選考ステータス管理: 各企業の選考状況（書類選考、面接、内定など）を個別に管理・更新できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+レスポンシブ対応: PC・スマートフォンの両方で快適に操作可能です。
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+📄 ページ構成
+トップページ (/):
 
-## Learn More
+全企業の一覧を表示。検索やフィルタリングの起点となります。
 
-To learn more about Next.js, take a look at the following resources:
+お気に入りページ (/favorite):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ユーザーが「お気に入り」に登録した企業のみをフィルタリングして表示します。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+選考状況ページ (/status):
 
-## Deploy on Vercel
+エントリー済みの企業の現在のフェーズを一覧化し、進捗を確認できます。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📂 ディレクトリ構成
+Next.jsのApp Routerに基づいた構成を採用しています。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+.
+├── app/ # App Routerのルーティング・ページコンポーネント
+│ ├── layout.tsx # 全ページ共通のレイアウト（ヘッダー・フッター）
+│ ├── page.tsx # トップページ
+│ ├── favorite/ # お気に入りページ
+│ └── status/ # 選考状況ページ
+├── components/ # 再利用可能なUIコンポーネント（Button, Card, Header等）
+│ └── \*.module.css # 各コンポーネント専用のCSS Modules
+├── lib/ # 外部サービス連携（microCMSクライアント等）
+│ └── microcms.ts # microCMS SDKの初期化とデータ取得ロジック
+├── public/ # 静的資産（画像、アイコン等）
+├── types/ # TypeScriptの型定義（企業のインターフェース等）
+└── globals.css # プロジェクト全体の共通スタイル
+
+🛠 microCMS にアクセスする処理の説明
+データの永続化にはヘッドレスCMSである microCMS を使用しています。
+
+データ取得: microcms-js-sdk を使用し、サーバーコンポーネントから直接APIを叩くことで、ビルド時またはリクエスト時に最新の企業情報を取得しています。
+
+型安全: TypeScriptを用いてAPIレスポンスの型を定義し、データ取得から表示まで型安全な開発を実現しています。
+
+環境変数の利用: APIキーやサービスドメインは process.env を介して管理し、セキュリティを確保しています。
+
+💡 工夫した点
+ユーザー体験（UX）の向上: CSS Modulesを活用し、コンポーネントごとにスタイルをカプセル化（Scoped CSS）。デザインの崩れを防ぎつつ、メンテナンス性の高い実装を行いました。
+
+App Routerの活用: Server Componentsを積極的に利用することで、クライアントサイドに送るJavaScriptの量を削減し、ページの読み込み速度を最適化しました。
+
+直感的なUI: ヘッダーから主要な機能（お気に入り・選考状況）へ迷わずアクセスできるよう、シンプルなナビゲーションを設計しました。
+
+⚡ 苦労した点
+選考状況に応じた動的な表示制御
+「選考状況ページ」において、すべての企業を表示するのではなく、ユーザーがセレクトボックスで具体的なステータスを選択した企業のみを表示するロジックの実装に苦労しました。「選択してください（初期値）」の状態を条件分岐で除外する処理を組み込むことで、必要な情報だけが並ぶようにしました。
+
+タグによるインタラクティブな企業フィルタリング
+企業一覧ページにおいて、特定のタグをクリックした際に、該当する企業のみを瞬時に抽出するフィルタリング機能を実装しました。microCMSから取得した配列データに対して、JavaScriptのfilterメソッドを適切に適用し、複雑な条件でも正確に画面が更新されるよう型定義とロジックを両立させる点に注力しました。

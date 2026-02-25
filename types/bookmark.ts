@@ -1,12 +1,3 @@
-// export type BookmarkItem = {
-//   id: string;
-//   companyId: string;
-// };
-
-// // export type BookmarkItem = {
-// //   id: string;
-// //   companyId: string;
-// // };
 
 export type BookmarkItem = {
   companyId: string;

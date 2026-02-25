@@ -29,13 +29,8 @@ export default function CompanyCard({ company }: Props) {
       <h2 className={styles.companyName}>{company.name}</h2>
 
       <div className={styles.tagList}>
-        {company.tags.map((tag, index) => (
-          <Link
-            key={index}
-            href={`/companies?tag=${tag}`}
-            className={styles.tag}
-            style={{ background: tagColors[tag] ?? "#e5e7eb" }}
-          >
+        {company.tags?.map((tag, index) => (
+          <Link key={index} href={`/companies?tag=${tag}`}>
             {tag}
           </Link>
         ))}

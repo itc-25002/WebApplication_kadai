@@ -1,4 +1,3 @@
-// app/api/companies/route.ts
 import { fetchCompanies } from "@/lib/fetchCompanies";
 import { NextResponse } from "next/server";
 

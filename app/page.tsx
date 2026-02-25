@@ -1,92 +1,107 @@
-// import SelectionStatusCard from "@/components/SelectionStatusCard";
-// import BookmarkCard from "@/components/BookmarkCard";
+import { fetchCompanies } from "@/lib/fetchCompanies";
+import Link from "next/link";
+import styles from "./page.module.css";
+import StarButton from "@/components/StarButton";
+import StatusSelector from "@/components/StatusSelector";
 
-// import { fetchBookmarks } from "@/lib/fetchBookmarks";
+const tagColors: Record<string, string> = {
+  自社開発: "#ea580c",
+  受託開発: "#16a34a",
+  システム: "#2563eb",
+  インフラ: "#7c3aed",
+  Sier: "#db2777",
+  SES: "#f59e0b",
+  ソフトウェア開発: "#ba55d3",
+  セキュリティ: "#008b8b",
+  独立系: "#ef4444",
+};
 
-// export default async function HomePage() {
-//   // お気に入りデータ取得
-//   const bookmarks = await fetchBookmarks();
+type Props = {
+  searchParams: {
+    tag?: string;
+  };
+};
 
-//   return (
-//     <main style={{ padding: "40px" }}>
-//       <h1>ホーム</h1>
+export default async function HomePage({ searchParams }: Props) {
+  const companies = await fetchCompanies();
+  const selectedTag = searchParams.tag;
 
-//       <div className="topCards">
-//         {/* 選考状況カード */}
-//         <SelectionStatusCard />
-
-//         {/* お気に入りカード */}
-//         <div>
-//           <h2>お気に入り</h2>
-
-//           {bookmarks.map((item) => (
-//             <BookmarkCard key={item.id} item={item} />
-//           ))}
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
-
-// import SelectionStatusCard from "@/components/SelectionStatusCard";
-// import { fetchBookmarks } from "@/lib/fetchBookmarks";
-
-// export default async function HomePage() {
-//   const bookmarks = await fetchBookmarks();
-
-//   return (
-//     <main style={{ padding: "40px" }}>
-//       <h1>ホーム</h1>
-
-//       <div className="topCards">
-//         {/* 左：選考状況 */}
-//         <SelectionStatusCard />
-
-//         {/* 右：お気に入り */}
-//         <div className="cardBox">
-//           <h2>お気に入り</h2>
-
-//           <ul>
-//             {bookmarks.map((item) => (
-//               <li key={item.id} className="row">
-//                 <p className="company">{item.company}</p>
-//                 <p className="tag">{item.tags}</p>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
-
-import SelectionStatusCard from "@/components/SelectionStatusCard";
-import { fetchBookmarks } from "@/lib/fetchBookmarks";
-
-export default async function HomePage() {
-  const bookmarks = await fetchBookmarks();
+  const filteredCompanies = selectedTag
+    ? companies.filter((company) => company.tags.includes(selectedTag))
+    : companies;
 
   return (
-    <main style={{ padding: "40px" }}>
-      <h1>ホーム</h1>
+    <main className={styles.pageWrapper}>
+      <h1 className={styles.title}>企業一覧</h1>
 
-      <div className="topCards">
-        {/* 左：選考状況 */}
-        <SelectionStatusCard />
-
-        {/* 右：お気に入り */}
-        <div className="cardBox">
-          <h2>お気に入り</h2>
-
-          <ul>
-            {bookmarks.map((item) => (
-              <li key={item.id} className="row">
-                <p className="company">{item.company}</p>
-                <p className="tag">{item.tags}</p>
-              </li>
-            ))}
-          </ul>
+      {selectedTag && (
+        <div className={styles.filterInfo}>
+          <span>
+            絞り込み中：<strong>{selectedTag}</strong>
+          </span>
+          <Link href="/" className={styles.clearButton}>
+            すべて表示
+          </Link>
         </div>
+      )}
+
+      <div className={styles.grid}>
+        {filteredCompanies.map((company) => (
+          <div key={company.id} className={styles.card}>
+            {/* 名前と星ボタンを横並びにするレイアウト調整 */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <h2 className={styles.companyName} style={{ margin: 0 }}>
+                {company.name}
+              </h2>
+              <div style={{ marginTop: "6px" }}>
+          <StatusSelector companyId={company.id} />
+        </div>
+              <StarButton companyId={company.id} />
+            </div>
+
+            <div className={styles.tagList}>
+              {company.tags.map((tag, index) => (
+                <Link
+                  key={index}
+                  href={`/?tag=${tag}`}
+                  className={styles.tag}
+                  style={{
+                    background: tagColors[tag] ?? "#e5e7eb",
+                  }}
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+
+            <div className={styles.linkArea}>
+              <a
+                href={company.hpurl}
+                target="_blank"
+                className={styles.linkButton}
+              >
+                公式HP
+              </a>
+
+              {company.mynaviurl && (
+                <a
+                  href={company.mynaviurl}
+                  target="_blank"
+                  className={`${styles.linkButton} ${styles.secondary}`}
+                >
+                  マイナビ
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </main>
   );

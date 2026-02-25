@@ -39,8 +39,6 @@ export async function fetchBookmarks(): Promise<BookmarkItem[]> {
   }
 
   const data = await res.json();
-
-  console.log("取得したお気に入り:", data.contents);
-
   return data.contents;
 }
+

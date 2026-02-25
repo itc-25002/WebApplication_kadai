@@ -17,9 +17,6 @@ export default function RootLayout({
           <nav className="nav">
             <ul>
               <li>
-                <Link href="/companies">企業一覧</Link>
-              </li>
-              <li>
                 <Link href="/bookmarks">お気に入り</Link>
               </li>
               <li>

@@ -1,52 +1,89 @@
-/* .container {
-  padding: 40px;
+.pageWrapper {
+  background-color: #f9fafb; /* お気に入りと同じ薄いグレー */
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
 .title {
-  font-size: 26px;
-  margin-bottom: 20px;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  border-left: 8px solid #2563eb; /* 企業一覧のテーマカラーに合わせる */
+  padding-left: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .card {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  background: white;
-  max-width: 700px;
-}
-
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.item:last-child {
-  border-bottom: none;
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 10px;
 }
 
-.company {
+.companyName {
+  font-size: 1.2rem;
   font-weight: bold;
-  flex: 1;
+  color: #111827;
+  margin: 0;
 }
 
-.badge {
-  background: #1976d2;
-  color: white;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 8px;
+.statusBadge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 .date {
-  font-size: 13px;
-  color: gray;
-} */
+  font-weight: 500;
+  color: #374151;
+}
+
+.memo {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.5;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.statusSelect {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  appearance: none; /* デフォルトの矢印を消す（任意） */
+  outline: none;
+}

@@ -30,6 +30,26 @@
 
 ---
 
+<!--
+## 📂 ディレクトリ構成
+Next.jsの **App Router** に基づいた、メンテナンス性の高い構成を採用しています。
+
+```text
+.
+├── app/              # ルーティング・ページコンポーネント
+│   ├── globals.css   # 全体共通スタイル
+│   ├── layout.tsx    # 共通レイアウト（ヘッダー・フッター）
+│   ├── page.tsx      # トップページ
+│   ├── favorite/     # お気に入りページ
+│   └── status/       # 選考状況ページ
+├── components/       # 再利用可能なUIコンポーネント（Card, Header等）
+│   └── *.module.css  # CSS Modules（Scoped CSS）
+├── lib/              # 外部サービス連携（microCMS等）
+│   └── microcms.ts   # データ取得ロジック
+├── types/            # TypeScriptの型定義
+└── public/           # 静的資産（画像、アイコン等）
+ -->
+
 ## 📂 ディレクトリ構成
 
 Next.jsの **App Router** に基づいた、メンテナンス性の高い構成を採用しています。
@@ -48,8 +68,7 @@ Next.jsの **App Router** に基づいた、メンテナンス性の高い構成
 │   └── microcms.ts   # データ取得ロジック
 ├── types/            # TypeScriptの型定義
 └── public/           # 静的資産（画像、アイコン等）
-
-
+```
 
 ## 🛠 技術的な取り組み（microCMS連携）
 データの永続化にはヘッドレスCMSである **microCMS** を使用しています。
@@ -82,4 +101,3 @@ Next.jsの **App Router** に基づいた、メンテナンス性の高い構成
 * **Styling**: CSS Modules
 * **CMS**: microCMS
 * **Deployment**: Vercel
-```

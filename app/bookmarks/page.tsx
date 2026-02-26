@@ -1,11 +1,8 @@
-
-
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import StarButton from "@/components/StarButton"; // StarButtonをインポート
-import styles from "../companies/page.module.css";
 
 export default function BookmarksPage() {
   const [favoriteCompanies, setFavoriteCompanies] = useState<any[]>([]);
